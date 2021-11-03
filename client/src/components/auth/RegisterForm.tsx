@@ -35,6 +35,20 @@ const RegisterForm = () => {
                     <input type="text" className="form-control" id="name"
                     name="name" value={name} onChange={handleChangeInput}
                     placeholder="Your name is up to 20 chars." />
+                </div>
+
+                <div className="form-group mb-3">
+                    <label htmlFor="account" className="form-label">
+                        Email 
+                    </label>
+
+                    <input type="text" className="form-control" id="account"
+                    name="account" value={account} onChange={handleChangeInput}
+                    placeholder="Example@gmail.com" />
+                </div>
+
+                <div className="form-group mb-3">
+                    <label htmlFor="password" className="form-label">Password</label>
 
                 <div className="pass">
                     <input type={typePass ? "text" : "password"}

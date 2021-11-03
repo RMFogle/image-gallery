@@ -47,9 +47,9 @@ export const refreshToken = () =>
         try {
             dispatch({ type: ALERT, payload: { loading: true } })
 
-            // const res = await getAPI('refresh_token')
+            const res: any = await getAPI('refresh_token')
 
-            // dispatch({ type: AUTH, payload: res.data })
+            dispatch({ type: AUTH, payload: res.data })
 
             dispatch({ type: ALERT, payload: { } })
         } catch (err: any) {
@@ -58,12 +58,28 @@ export const refreshToken = () =>
     }
 
 export const logout = () =>
-async (dispatch: Dispatch<IAuthType | IAlertType>) => {
-    try {
-        localStorage.removeItem('logged')
-        await getAPI('logout')
-        window.location.href = "/"
-    } catch (err: any) {
-        dispatch({ type: ALERT, payload: { errors: err.response.data.msg } })
+    async (dispatch: Dispatch<IAuthType | IAlertType>) => {
+        try {
+            localStorage.removeItem('logged')
+            await getAPI('logout')
+            window.location.href = "/"
+        } catch (err: any) {
+            dispatch({ type: ALERT, payload: { errors: err.response.data.msg } })
+        }
     }
-}
+
+export const googleLogin = (id_token: string) =>
+    async (dispatch: Dispatch<IAuthType | IAlertType>) => {
+        try {
+            dispatch({ type: ALERT, payload: { loading: true } })
+
+            const res: any = await postAPI('google_login', { id_token })
+
+            dispatch({ type: AUTH, payload: res.data })
+
+            dispatch({ type: ALERT, payload: { success: res.data.msg } })
+            localStorage.setItem('logged', 'image-gallery')
+        } catch (err: any) {
+            dispatch({ type: ALERT, payload: { errors: err.response.data.msg } })
+        }
+    }

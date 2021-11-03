@@ -13,7 +13,7 @@ const Active = () => {
     useEffect(() => {
         if(slug){
             postAPI('active', { active_token: slug })
-            // .then(res => setSuccess(res.data.msg))
+            .then((res: any) => setSuccess(res.data.msg))
             .catch(err => setErr(err.response.data.msg))
         }
     },[slug])

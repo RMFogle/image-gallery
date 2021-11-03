@@ -38,7 +38,7 @@ const Menu = () => {
             {
                 auth.user && 
                 <li className="nav-item dropdown">
-                    <span className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="drowdown" aria-expanded="false">
+                    <span className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src={auth.user.avatar} alt="avatar" className="avatar" />
                     </span>
 
@@ -48,7 +48,7 @@ const Menu = () => {
                         </li>
 
                         <li>
-                            <hr className="drowndown-divider" />
+                            <hr className="drowpdown-divider" />
                         </li>
                         <li>
                             <Link className="dropdown-item" to="/" onClick={() => dispatch(logout())}>

@@ -1,7 +1,9 @@
 import authRouter from './authRouter'
+import imgRouter from './imgRouter'
 
 const routes = {
-    authRouter
+    authRouter,
+    imgRouter
 }
 
 export default routes; 

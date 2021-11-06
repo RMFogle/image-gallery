@@ -37,3 +37,14 @@ export interface IUserParams {
     avatar?: string
     type: string
 }
+
+export interface IGalleryImage {
+    image?: Buffer
+    createdAt: Date
+}
+
+export interface IImage {
+    file: File
+    image: string
+    result: string
+}

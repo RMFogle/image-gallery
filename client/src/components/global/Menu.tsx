@@ -16,7 +16,8 @@ const Menu = () => {
 
     const afLoginLinks = [
         { label: 'Home', path: '/' },
-        { label: 'CreateGallery', path: '/create_gallery'}
+        { label: 'Upload', path: '/upload' },
+        { label: 'Gallery', path: '/gallery'}
     ]
 
     const navLinks = auth.access_token ? afLoginLinks : bfLoginLinks

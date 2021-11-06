@@ -43,8 +43,8 @@ export interface IAlert {
     errors?: string | string[]
 }
 
-export interface IGallery {
-    _id?: string
-    user: string | IUser
+export interface IImage {
+    image: string | File
     createdAt: string
+    _id: string
 }

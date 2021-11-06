@@ -15,3 +15,11 @@ export const getAPI = async (url: string, token?:string) => {
 
     return res;
 }
+
+export const deleteAPI = async (url: string, token?:string) => {
+    const res = await axios.delete(`/api/${url}`, {
+        headers: { Authorization: token as string}
+    })
+
+    return res; 
+}

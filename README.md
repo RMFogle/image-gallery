@@ -6,10 +6,10 @@ A TypeScript version of react photo gallery app.
 - I'm learning TypeScript and how to take an exisiting project and migrate it from JavaScript to TypeScript. 
 
 - Following documentation: 
-![](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
+https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html
 
 - Research:
-![](https://www.freecodecamp.org/news/how-to-add-typescript-to-a-javascript-project/)
+https://www.freecodecamp.org/news/how-to-add-typescript-to-a-javascript-project/
 
 ## Roadmap: 
 - Test google login, jwt login, register, logout functionality.

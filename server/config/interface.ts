@@ -38,8 +38,8 @@ export interface IUserParams {
     type: string
 }
 
-export interface IGalleryImage {
-    image?: Buffer
+export interface IGalleryImage extends Document{
+    image: string
     createdAt: Date
 }
 

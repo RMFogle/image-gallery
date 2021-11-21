@@ -5,7 +5,7 @@ const imageReducer = (state: IImage[] = [], action: types.IImageType
     ): IImage[] => {
     switch (action.type) {
         case types.ADD_IMAGE:
-            return [action.payload, ...state]
+            return [ ...state, action.payload]
         case types.LOAD_IMAGES:
             return action.payload
         case types.DELETE_IMAGE:

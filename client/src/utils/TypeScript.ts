@@ -45,6 +45,7 @@ export interface IAlert {
 
 export interface IImage {
     image: string | File
+    images: any
     createdAt: string
     _id: string
 }

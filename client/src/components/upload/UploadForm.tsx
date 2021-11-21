@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
-import { beginAddImage } from '../../redux/actions/imageAction';
+import { addImage } from '../../redux/actions/imageAction';
 import { FormSubmit } from '../../utils/TypeScript';
+import FileBase from 'react-file-base64';
 
 const UploadForm = (errors: any) => {
     const dispatch = useDispatch()
 
-    const [imageUpload, setImageUpload] = useState(null);
+    const [imageUpload, setImageUpload] = useState({ image: '' });
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [errorMsg, setErroMsg] = useState(null);
 
@@ -20,19 +21,21 @@ const UploadForm = (errors: any) => {
         setErroMsg(null); // reset error message on page load
     }, []);
 
-    const handleOnChange = (event: any) => {
-        const file = event.target.files[0]
-        setImageUpload(file)
+    // const handleOnChange = (event: any) => {
+    //     const file = event.target.files[0]
+    //     setImageUpload(file)
+    // };
+
+    const handleFormSubmit = (e: any) => {
+        e.preventDefault();
+        dispatch(addImage(imageUpload));
+        setIsSubmitted(true);
+        clear();
     };
 
-    const handleFormSubmit = (e: FormSubmit) => {
-        e.preventDefault();
-        if (imageUpload) {
-        setErroMsg(null)
-        dispatch(beginAddImage(imageUpload));
-        setIsSubmitted(true);
-        }
-    };
+    const clear = () => {
+        setImageUpload({ image: '' })
+    }
 
     return (
         <React.Fragment>
@@ -48,18 +51,16 @@ const UploadForm = (errors: any) => {
         <Form
             onSubmit={handleFormSubmit}
             method="post"
-            encType="multipart/form-data"
             className="upload-form"
         >
             <Form.Group>
             <Form.Label>Choose image to upload</Form.Label>
-            <Form.Control type="file" name="image" onChange={handleOnChange} />
+            {/* <Form.Control type="file" name="image" onChange={handleOnChange} /> */}
+            <div className="image-upload"><FileBase type="file" multiple={false} onDone={({base64} : { base64: any}) => setImageUpload({ ...imageUpload, image: base64 })} /></div>
             </Form.Group>
             <Button
             variant="primary"
             type="submit"
-            className={`${!imageUpload ? 'disabled submit-btn' : 'submit-btn'}`}
-            disabled={imageUpload ? false : true}
             >
             Upload
             </Button>

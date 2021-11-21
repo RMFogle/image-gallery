@@ -1,17 +1,17 @@
 import express, { Request, Response } from 'express'; 
+import mongoose from 'mongoose'
 import ImageSchema from '../models/imgGalleryModel';
 
 
 const router = express.Router();
     
 export const createImage = async (req: Request , res: Response) => {
-        try {
-        const image = new ImageSchema(req.body);
-        const file = req.file?.buffer
-        image.image = file;
+        const post = req.body;
+        const newImage = new ImageSchema(post)
 
-        await image.save();
-        res.status(201).send({ _id: image._id });
+        try {
+        await newImage.save();
+        res.status(201).send(newImage);
         } catch (error) {
         res.status(500).send({
             upload_error: 'Error while uploading file...Try again later.'
@@ -21,8 +21,9 @@ export const createImage = async (req: Request , res: Response) => {
 
 export const getImages = async (req: Request, res: Response) => {
     try {
-        const images = await ImageSchema.find({});
-        res.send(images);
+        const getImages = await ImageSchema.find();
+
+        res.status(200).json(getImages)
     } catch (error) {
         res.status(500).send({ get_error: 'Error while getting list of images.' });
     }
@@ -40,6 +41,8 @@ export const getImage = async (req: Request, res: Response) => {
 
 export const deleteImage = async (req: Request, res: Response) => {
     const { id } = req.params; 
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
 
     await ImageSchema.findByIdAndRemove(id);
 
